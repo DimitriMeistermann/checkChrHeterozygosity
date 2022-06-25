@@ -1,0 +1,9 @@
+{
+	"IS_PAIRED_END": true,
+	"THREAD_PER_SAMPLE": 1,
+	"FASTA_REFERENCE": "/mnt/d/PostdocUnsync/Ressources/ref/GCF_905220565.1_ilMelCinx1.1/GCF_905220565.1_ilMelCinx1.1_genomic.fna",
+	"FASTQ_PATH": "/mnt/d/PostdocUnsync/Help/Morgane/iseqSexDetermination/SexDetermination_Morgane_iseq_20220608",
+	"OUTPUT_PATH": "/mnt/d/PostdocUnsync/Help/Morgane/iseqSexDetermination/callSNPworkflow/Out",
+	"PAIR_END_FILE_PATTERN":"_R",
+	"USE_TRIMMOMATIC":true
+}

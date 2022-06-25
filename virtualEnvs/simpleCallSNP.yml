@@ -1,0 +1,18 @@
+name: simpleSNP
+channels:
+  - bioconda
+  - conda-forge
+  - defaults
+dependencies:
+  - r-base
+  - snakemake-minimal
+  - bwa
+  - multiqc
+  - fastqc
+  - samtools
+  - bcftools
+  - trimmomatic
+  - gatk4
+  - picard
+  - r-data.table
+  - r-ggplot2
