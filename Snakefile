@@ -171,10 +171,35 @@ rule mergeVCF:
 		Rscript {WORKING_DIR}/mergeVCF.R {OUTPUT_PATH} {WORKING_DIR}/general.R
 	"""
 
+rule HTSEQ_COUNT:
+	input: OUTPUT_PATH+"/BAM/{sample}.bam"
+	output: OUTPUT_PATH+"/counts/{sample}.counts"
+	params:
+		gtf = GTF_REFERENCE,
+		featureID = FEATURE_ID,
+		featureType = FEATURE_TYPE
+	log: err=OUTPUT_PATH+"/log/HTSEQ_COUNT_{sample}.err"
+	shell: """
+	htseq-count -f bam -t {params.featureType} -i {params.featureID} -s no {input} {params.gtf} 1> {output} 2> {log.err}
+	"""
+	
+rule COUNTS_TABLE:
+	input: expand(OUTPUT_PATH+"/counts/{sample}.counts",sample=SAMPLES)
+	output:
+		table = OUTPUT_PATH+"/results/rawCountsTable.tsv",
+		stat = OUTPUT_PATH+"/results/alignStatTable.tsv"
+	params: cpu = 1
+	log:
+		out=OUTPUT_PATH+"/log/COUNTS_TABLE.out",
+		err=OUTPUT_PATH+"/log/COUNTS_TABLE.err"
+	shell: "Rscript {WORKING_DIR}/countsTable.R {OUTPUT_PATH}  1> {log.out} 2> {log.err}"
+
 rule MULTIQC:
 	input:
 		fastqc=expand(OUTPUT_PATH+"/fastQC/{sample}{pair}_fastqc{ext}", sample=SAMPLES,pair=PAIR_SUFFIX,ext=[".zip",".html"]),
-		tsv=OUTPUT_PATH+"/results/merged.tsv"
+		tsv=OUTPUT_PATH+"/results/merged.tsv",
+		table = OUTPUT_PATH+"/results/rawCountsTable.tsv",
+		stat = OUTPUT_PATH+"/results/alignStatTable.tsv"
 	output: OUTPUT_PATH+"/results/multiqc_report.html"
 	params:
 		outpath = OUTPUT_PATH + "/results",

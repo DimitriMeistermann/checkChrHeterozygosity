@@ -16,3 +16,4 @@ dependencies:
   - picard
   - r-data.table
   - r-ggplot2
+  - htseq

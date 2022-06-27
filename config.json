@@ -5,5 +5,9 @@
 	"FASTQ_PATH": "/mnt/d/PostdocUnsync/Help/Morgane/iseqSexDetermination/SexDetermination_Morgane_iseq_20220608",
 	"OUTPUT_PATH": "/mnt/d/PostdocUnsync/Help/Morgane/iseqSexDetermination/callSNPworkflow/Out",
 	"PAIR_END_FILE_PATTERN":"_R",
-	"USE_TRIMMOMATIC":true
+	"USE_TRIMMOMATIC":true,
+	"GTF_REFERENCE":"/mnt/d/PostdocUnsync/Ressources/ref/GCF_905220565.1_ilMelCinx1.1/CustomSexDeterminationCinxia.gtf",
+	"FEATURE_TYPE":"CDS",
+	"FEATURE_ID":"gene_name"
+	
 }
