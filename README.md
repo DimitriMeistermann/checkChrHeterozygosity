@@ -1,5 +1,5 @@
 # Description
-This pipeline aims to provide a simple alignment tool for  RNAseq data (without UMI). The fastq files are aligned on a reference genome with STAR and counted with HTSeq-Count. 
+This pipeline aims to provide a simple SNP calling workflow with a generation of a count table. It is designed for small datasets from multiplexed qPCR and check at the end the heterozygosity rate of variants (all reads should come from 1 chromosom). 
 
 # Prerequisites
 - Git
@@ -12,8 +12,8 @@ The *fastq.gz* files need to be gathered in a directory. The pathway to this dir
 
 # Installation
 ~~~
-git git@github.com:DimitriMeistermann/simpleSNPcall.git
-cd simpleSNPcall
+git clone git@github.com:DimitriMeistermann/checkChrHeterozygosity.git
+cd checkChrHeterozygosity
 conda env create -f virtualEnvs/simpleCallSNP.yml
 ~~~
 
@@ -53,4 +53,4 @@ snakemake -rp -j 8 --configfile configFileSave/[yourConfig.json]
 - **VCF**: Result of variant calling in VCF format
 - **TSV**: Result of variant calling in TSV format
 - **counts**: this directory contains the resulting counts files obtained from htseqcount.
-- **results**: this directory contains the raw counts table, a table of alignment stats, the multiqc reports that present different quality scores from the data, the merged TSV file of variant calling results, and a barplot of allelic distribution of variants.
+- **results**: this directory contains the raw counts table, a table of alignment stats, the multiqc reports that present different quality scores from the data, the merged TSV file of variant calling results, and a barplot of heterozygosity rate of variants.
