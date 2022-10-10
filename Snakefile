@@ -71,6 +71,13 @@ if IS_PAIRED_END :
 		trimmomatic PE {input} {output.pairedR1} {output.unpairedR1} {output.pairedR2} {output.unpairedR2} \
 		ILLUMINACLIP:TruSeq3-PE.fa:2:30:10:2:True LEADING:3 TRAILING:3 MINLEN:36
 		"""	
+else:
+	rule TRIMMOMATIC:
+		input: FASTQ_PATH+"/{sample}.fastq.gz"
+		output: OUTPUT_PATH+"/FASTQ_TRIM/{sample}.fastq.gz",
+		shell: """
+		trimmomatic SE {input} {output} ILLUMINACLIP:TruSeq3-SE.fa:2:30:10 LEADING:3 TRAILING:3 MINLEN:36
+		"""	
 
 rule FASTQC:
 	input: ALIGN_FASTQ_FOLDER+"/{sample}{pair}.fastq.gz"

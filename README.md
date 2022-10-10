@@ -4,6 +4,7 @@ This pipeline aims to provide a simple SNP calling workflow with a generation of
 # Prerequisites
 - Git
 - Conda
+- Mamba
 
 
 # Input
@@ -12,9 +13,9 @@ The *fastq.gz* files need to be gathered in a directory. The pathway to this dir
 
 # Installation
 ~~~
-git clone git@github.com:DimitriMeistermann/checkChrHeterozygosity.git
+git clone https://github.com/DimitriMeistermann/checkChrHeterozygosity.git
 cd checkChrHeterozygosity
-conda env create -f virtualEnvs/simpleCallSNP.yml
+mamba env create -f virtualEnvs/simpleCallSNP.yml
 ~~~
 
 # Configuration
@@ -34,13 +35,13 @@ conda env create -f virtualEnvs/simpleCallSNP.yml
 ## Normal launch (with 8 cores), with default config.json
 ~~~
 conda activate simpleSNP
-snakemake -rp -j 8
+snakemake -rpk -j 8
 ~~~
 
 ## With specific config file
 ~~~
 conda activate simpleSNP
-snakemake -rp -j 8 --configfile configFileSave/[yourConfig.json]
+snakemake -rpk -j 8 --configfile configFileSave/[yourConfig.json]
 ~~~
 
 # Output data
